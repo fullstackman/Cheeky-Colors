@@ -1,11 +1,82 @@
 <!Doctype HTML>
 <html>
 	<head>
+		<meta name="author" content="Brandon Diaz-Abreu">
 		<meta name="description" content="A list of HEX colors with a little attitude.">
+		<meta name="keywords" content="Brandon Diaz, Brandon Diaz-Abreu, software developer new jersey, full stack developer">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="theme-color" content="#BADA55">
+		<meta name="google-site-verification" content="NY1ANoMTcO7X90-hoJus7x5cnj0oAOZjMVvRGcz10t4" />
+		<!-- link rel="stylesheet" href="homepage.css" -->
 		<title>Cheeky Colors</title>
+		<style type="text/css">
+			body{
+				background: #BADA55; /* For browsers that do not support gradients */    
+				background: -webkit-linear-gradient(135deg, #408cff, #da4bff);
+				background: -o-linear-gradient(135deg, #408cff, #da4bff);
+				background: -moz-linear-gradient(135deg, #408cff, #da4bff);
+				background: linear-gradient(135deg, #408cff, #da4bff);
+				min-height: 100vh;
+				margin: 0;
+				text-align: center;
+			}
+			#main_area{
+				margin: 1vh 2vw 0 2vw;
+			}
+			.color_block{
+				width: 15vw;
+				height: 30vh;
+				display: inline-block;
+				background-color: #FFFFFF;
+				border-radius: 12px;
+				margin: 25px;
+				box-shadow: 0px 0px 51px 0px rgba(0, 0, 0, 0.08),
+							0px 6px 18px 0px rgba(0, 0, 0, 0.05);
+				transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+				transform: translateY(0px);
+			}
+			.color_display{
+				height: 70%;
+				border-radius: 12px 12px 0px 0px;
+			}
+			.color_title{
+				background-color: #FFFFFF;
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Cheeky Colors</h1>
-		<h2>What if your background color was a #BADA55?</h2>
+		<div id="main_area">
+			<h1>Cheeky Colors</h1>
+			<h2>What if your background color was a <span style="color: #BADA55">#BADA55</span>?</h2>
+			<div class="color_block">
+				<div class="color_display" style="background-color: #BADA55;">
+				</div>
+				<div class="color_title">
+					<p>BADASS</p>
+				</div>
+			</div>
+			<div class="color_block">
+				<div class="color_display" style="background-color: #CA7;">
+				</div>
+				<div class="color_title">
+					<p>CAT</p>
+				</div>
+			</div>
+			<div class="color_block">
+				<div class="color_display" style="background-color: #7AC055;">
+				</div>
+				<div class="color_title">
+					<p>TACOSS</p>
+				</div>
+			</div>
+			<div class="color_block">
+				<div class="color_display" style="background-color: #BA7;">
+				</div>
+				<div class="color_title">
+					<p>BAT</p>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
