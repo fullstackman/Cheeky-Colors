@@ -1,0 +1,74 @@
+<!Doctype HTML>
+<html>
+	<head>
+		<meta name="author" content="Brandon Diaz-Abreu">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="theme-color" content="#408CFF">
+		<title>Dictionary Cleaner</title>
+		<style type="text/css">
+			body{
+				min-height: 100vh;
+				margin: 0;
+			}
+			#main_area{
+				margin: 1vh 2vw 0 2vw;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main_area">
+			<h1>Dictionary Cleaner</h1>
+			<h2>Generate the dictionary needed for Cheeky Colors</h2>
+			<hr>
+			<p>Upload the raw dictionary file that you downloaded (like from Wiktionary) and watch as the list of eligible words get generated!</p>
+			<input type="file" id="uploadButton">
+			<p>Copy and paste this list into a file called dictionary.js</p>
+			<p id="outputArea">var dictionary = [<br></p>
+			<span>]</span>
+		</div>
+		<script type="text/javascript">
+			function readSingleFile(evt) {
+				//Retrieve the first (and only!) File from the FileList object
+				var f = evt.target.files[0]; 
+
+				if (!f) {
+					alert("Failed to load file");
+					return;
+				}
+				var r = new FileReader();
+				r.readAsText(f);
+				r.onload = function(e) { 
+					console.log( "Got the file . . . Let's begin!");  
+					let contents = e.target.result;
+					let cheekyPattern = /really/g;
+					console.log("Pattern assigned!");
+					let printArea = document.getElementById('outputArea');
+					console.log("Print area found!");
+					let previousIndex = 0;
+
+					/* 	To prevent an infinite loop, there is a check to see if the
+						regular expression starts from an index greater than or equal
+						to the previous search. When the regular expression fails to find
+						a match, it resets the search index to zero.
+					*/
+					while(cheekyPattern.lastIndex >= previousIndex){
+						let match = cheekyPattern.exec(contents);
+						// Break here or else null will get printed.
+						if(match == null){
+							console.log("Done.");
+							break;
+						}
+						let resultText = "'"+match+"',<br>";
+						printArea.innerHTML += resultText;
+						/* Assign to previousIndex the value of lastIndex or
+						   previousIndex, whichever is greater.*/
+						previousIndex = cheekyPattern.lastIndex || previousIndex;
+					}
+					console.log("Loop finished late!");
+				}
+			}
+
+			document.getElementById('uploadButton').addEventListener('change', readSingleFile, false);
+		</script>
+	</body>
+</html>
