@@ -40,8 +40,9 @@
 				r.onload = function(e) { 
 					console.log( "Got the file . . . Let's begin!");  
 					let contents = e.target.result;
-					let cheekyPattern = /really/g;
-					console.log("Pattern assigned!");
+					// This represents the characters ABCEDF01245679, 3 or 6 times in a row
+					let cheekyPattern = /(\s|\0)((A|B|C|D|E|F|O|I|Z|H|S|G|T|P){3}|(A|B|C|D|E|F|O|I|Z|H|S|G|T|P){6})(\s|\0)/gi;
+					console.log("Pattern assigned as: "+cheekyPattern);
 					let printArea = document.getElementById('outputArea');
 					console.log("Print area found!");
 					let previousIndex = 0;
@@ -58,13 +59,24 @@
 							console.log("Done.");
 							break;
 						}
-						let resultText = "'"+match+"',<br>";
+						//console.log("We found this: "+match);
+						match = match.toString();
+						/*Sometimes the regular expression returns extra characters separated by commas. The next few lines filter out that noise*/
+						let noise = match.indexOf(",");
+						//console.log("match had a comma at index "+noise);
+						let resultText = "";
+						if(noise > -1){
+							resultText = "'"+match.substring(0, noise-1)+"',<br>";
+						}
+						else{
+							resultText = "'"+match+"',<br>";
+						}
 						printArea.innerHTML += resultText;
 						/* Assign to previousIndex the value of lastIndex or
 						   previousIndex, whichever is greater.*/
 						previousIndex = cheekyPattern.lastIndex || previousIndex;
 					}
-					console.log("Loop finished late!");
+					//console.log("Loop finished late!");
 				}
 			}
 

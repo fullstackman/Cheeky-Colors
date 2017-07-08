@@ -1,6 +1,16 @@
+
+BAT
 these are
 sample words
 0	!in a 
 really odd
 	||	file
 like,,,,,,,,really!
+Now here are some words that qualify:
+DOG
+CAT
+tacoss
+BUT NOT THESE WORDS
+OH BUT INCLUDE THIS ONE
+sea
+NICE, ALL DONE! or are you, daz
