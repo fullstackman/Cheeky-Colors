@@ -1,5 +1,21 @@
 # The Dictionary
+The dictionary of words used for Cheeky Colors. The file `dictionary.js` is what is actually used on the live site and is composed entirely of eligible words. The wiktionary data dump where I got all those words from is also provided as a reference.
 
-If you use the Wiktionary data dump, I highly recommend deleting the first 11,500 entries and and all lines that don't start with a 0.
+## Background
+To generate the colors displayed on the website, an array of eligible words is pulled from a JavaScript file. To be considered "eligible", a word must be either 3 or 6 characters in length and composed only of the letters used to describe HEX color characters (ABCDEF) or these letters: OIZHSGTP. I chose these letters based on [LeetSpeak](https://en.wikipedia.org/wiki/Leet) and they translate as follows:
+ * 0 --> O
+ * 1 --> I (letter i)
+ * 2 --> Z
+ * 4 --> H
+ * 5 --> S
+ * 6 --> G
+ * 7 --> T
+ * 9 --> P
 
-Copy and paste this list into a file called dictionary.js
+Why let 9 = P? Well it's commonly accepted that 3 = E. But 3 looks like a backwards E! So I treat 9 as a backwards P. Therefore, we get translations like `PASTED --> #9A57ED`.
+
+## Usage
+The dictionary file is ready to be used as-is. If you want to generate an updated dictionary, use the `dict_cleaner.html` file (or go to the [live page](cheekycolors.com/dictionary/dict_cleaner.html)) and follow the instructions.
+
+## Notes on Dictionary Generation
+If you want to use a Wiktionary data dump, you can get one from [here](https://dumps.wikimedia.org/enwiktionary/). I highly recommend deleting the first 11,500 entries and and all lines that don't start with a 0. Processing time on my machine was roughly 10 minutes (for a file of size 56 MB) and the web page was unresponsive for most of that time. For more responsive performance, limit the file size to about 15 megabytes. Copy and paste the final list into a file called `dictionary.js` and assign it to a JavaScript array.
