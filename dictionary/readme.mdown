@@ -1,0 +1,5 @@
+# The Dictionary
+
+If you use the Wiktionary data dump, I highly recommend deleting the first 11,500 entries and and all lines that don't start with a 0.
+
+Copy and paste this list into a file called dictionary.js

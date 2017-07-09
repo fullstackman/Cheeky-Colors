@@ -13,6 +13,12 @@
 			#main_area{
 				margin: 1vh 2vw 0 2vw;
 			}
+			#progressBar{
+				background-color: green;
+				height: 25px;
+				border-radius: 25px;
+				margin-top: 2vh;
+			}
 		</style>
 	</head>
 	<body>
@@ -22,11 +28,15 @@
 			<hr>
 			<p>Upload the raw dictionary file that you downloaded (like from Wiktionary) and watch as the list of eligible words get generated!</p>
 			<input type="file" id="uploadButton">
-			<p>Copy and paste this list into a file called dictionary.js</p>
-			<p id="outputArea">var dictionary = [<br></p>
-			<span>]</span>
+			<div id="progressArea">
+				<div id="progressBar"></div>
+			</div>
+			<p>The results{</p>
+			<p id="outputArea"></p>
 		</div>
 		<script type="text/javascript">
+			let progress = document.getElementById('progressBar');
+			progress.style = "height: 0px;";
 			function readSingleFile(evt) {
 				//Retrieve the first (and only!) File from the FileList object
 				var f = evt.target.files[0]; 
@@ -46,6 +56,8 @@
 					let printArea = document.getElementById('outputArea');
 					console.log("Print area found!");
 					let previousIndex = 0;
+					let counter = 0;
+					//progress.style = "height: 5px;";
 
 					/* 	To prevent an infinite loop, there is a check to see if the
 						regular expression starts from an index greater than or equal
@@ -75,6 +87,11 @@
 						/* Assign to previousIndex the value of lastIndex or
 						   previousIndex, whichever is greater.*/
 						previousIndex = cheekyPattern.lastIndex || previousIndex;
+						++counter;
+							let percentage = (100 * (previousIndex / contents.length) ) + "%;";
+							console.log(percentage+" complete!");
+							progress.style = "width: "+percentage;
+						//}
 					}
 					//console.log("Loop finished late!");
 				}
