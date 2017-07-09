@@ -7,8 +7,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="theme-color" content="#408CFF">
 		<meta name="google-site-verification" content="NY1ANoMTcO7X90-hoJus7x5cnj0oAOZjMVvRGcz10t4" />
-		<!-- link rel="stylesheet" href="homepage.css" -->
 		<title>Cheeky Colors</title>
+		<!-- Find a font with an open 4: http://www.proteacher.net/discussions/showthread.php?t=204159-->
 		<style type="text/css">
 			body{
 				background: #408CFF; /* For browsers that do not support gradients */    
@@ -19,6 +19,7 @@
 				min-height: 100vh;
 				margin: 0;
 				text-align: center;
+				font-size: 18px;
 			}
 			#main_area{
 				margin: 1vh 2vw 0 2vw;
@@ -38,8 +39,16 @@
 				transform: translateY(0px);
 			}
 			.color_display{
-				height: 70%;
+				height: 48%;
 				border-radius: 12px 12px 0px 0px;
+			}
+			.def_link{
+				color: #000000;
+				margin: 0.6vmin 0;
+			}
+			.def_link:hover{
+				opacity: 0.7;
+				color: blue;
 			}
 			.color_title{
 				background-color: #FFFFFF;
@@ -47,7 +56,25 @@
 			}
 			.color_title p{
 				/*font-size: 30px; Good for desktop*/
-				margin: 0.9vmin 0;
+				margin: 0.8vmin 0;
+			}
+			.hexcode{
+				display: none;
+			}
+			.color_title:hover .plaintext{
+				display: none;
+			}
+			.color_title:hover .hexcode{
+				font-family: Verdana;
+				display: block;
+			}
+			@media only screen and (min-width: 800px){
+				body{
+					font-size: 21px;
+				}
+				.color_display{
+					height: 65%;
+				}
 			}
 		</style>
 	</head>
@@ -55,90 +82,47 @@
 		<div id="main_area">
 			<h1>Cheeky Colors</h1>
 			<h2>What if your background color was a <span style="color: #BADA55">#BADA55</span>?</h2>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #BA77E2;">
+			<!-- 
+			<div>Coming soon. . .</div>
+			<noscript> -->
+				<div class="color_block">
+					<div class="color_display" style="background-color: #BADA55;">
+					</div>
+					<div class="color_title">
+						<p class="plaintext">BADASS</p>
+						<p class="hexcode">#BADA55</p>
+					</div>
+					<a class="def_link" href="https://en.wiktionary.org/wiki/badass" target="_blank">Definition</a>
 				</div>
-				<div class="color_title">
-					<p>BATTER</p>
+				<div class="color_block">
+					<div class="color_display" style="background-color: #CA7;">
+					</div>
+					<div class="color_title">
+						<p class="plaintext">CAT</p>
+						<p class="hexcode">#CA7</p>
+					</div>
+					<a class="def_link" href="https://en.wiktionary.org/wiki/cat" target="_blank">Definition</a>
 				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #BADA55;">
+				<div class="color_block">
+					<div class="color_display" style="background-color: #2EA;">
+					</div>
+					<div class="color_title">
+						<p class="plaintext">SEA</p>
+						<p class="hexcode">#5EA</p>
+					</div>
+					<a class="def_link" href="https://en.wiktionary.org/wiki/sea" target="_blank">Definition</a>
 				</div>
-				<div class="color_title">
-					<p>BADASS</p>
+				<div class="color_block">
+					<div class="color_display" style="background-color: #BAE;">
+					</div>
+					<div class="color_title">
+						<p class="plaintext">BAE</p>
+						<p class="hexcode">#BAE</p>
+					</div>
+					<a class="def_link" href="https://en.wiktionary.org/wiki/bae" target="_blank">Definition</a>
 				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #CA7;">
-				</div>
-				<div class="color_title">
-					<p>CAT</p>
-				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #7AC055;">
-				</div>
-				<div class="color_title">
-					<p>TACOSS</p>
-				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #2EA;">
-				</div>
-				<div class="color_title">
-					<p>SEA</p>
-				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #BA7;">
-				</div>
-				<div class="color_title">
-					<p>BAT</p>
-				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #AF7;">
-				</div>
-				<div class="color_title">
-					<p>AFT</p>
-				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #4A77E2;">
-				</div>
-				<div class="color_title">
-					<p>HATTER</p>
-				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #CA57E2;">
-				</div>
-				<div class="color_title">
-					<p>CASTER</p>
-				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #FA7;">
-				</div>
-				<div class="color_title">
-					<p>FAT</p>
-				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #E22025;">
-				</div>
-				<div class="color_title">
-					<p>ERRORS</p>
-				</div>
-			</div>
-			<div class="color_block">
-				<div class="color_display" style="background-color: #BAE;">
-				</div>
-				<div class="color_title">
-					<p>BAE</p>
-				</div>
-			</div>
+				<!-- <div>Please enable JavaScript to view more!</div>
+			</noscript> -->
 		</div>
 	</body>
 </html>
