@@ -13,11 +13,20 @@
 			#main_area{
 				margin: 1vh 2vw 0 2vw;
 			}
-			#progressBar{
-				background-color: green;
-				height: 25px;
-				border-radius: 25px;
-				margin-top: 2vh;
+			#notifications{
+				display: inline;
+			}
+			#warn_sign, #success_sign{
+				display: inline-block;
+				height: 3vh;
+				width: 3vh;
+				border-radius: 3vh;
+			}
+			#warn_sign{
+				background-color: orange;
+			}
+			#success_sign{
+				background-color: #68FF68;
 			}
 		</style>
 	</head>
@@ -26,17 +35,20 @@
 			<h1>Dictionary Cleaner</h1>
 			<h2>Generate the dictionary needed for Cheeky Colors</h2>
 			<hr>
-			<p>Upload the raw dictionary file that you downloaded (like from Wiktionary) and watch as the list of eligible words get generated!</p>
+			<p>Upload your raw dictionary file (you can get one from <a href="https://dumps.wikimedia.org/enwiktionary/">Wiktionary</a>) and watch as the list of eligible words get generated! Be careful with files larger than 15 MB</p>
 			<input type="file" id="uploadButton">
-			<div id="progressArea">
-				<div id="progressBar"></div>
+			<div id="notifications">
+				<div id="warn_sign"></div>
+				<div id="success_sign"></div>
 			</div>
-			<p>The results{</p>
+			<p>The results:</p>
 			<p id="outputArea"></p>
 		</div>
 		<script type="text/javascript">
-			let progress = document.getElementById('progressBar');
-			progress.style = "height: 0px;";
+			let warning = document.getElementById('warn_sign');
+			let success = document.getElementById('success_sign');
+			warning.style="display: none";
+			success.style="display: none";
 			function readSingleFile(evt) {
 				//Retrieve the first (and only!) File from the FileList object
 				var f = evt.target.files[0]; 
@@ -48,7 +60,8 @@
 				var r = new FileReader();
 				r.readAsText(f);
 				r.onload = function(e) { 
-					console.log( "Got the file . . . Let's begin!");  
+					console.log( "Got the file . . . Let's begin!");
+					warning.style="display: inline-block";
 					let contents = e.target.result;
 					// This represents the characters ABCEDF01245679, 3 or 6 times in a row
 					let cheekyPattern = /(\s|\0)((A|B|C|D|E|F|O|I|Z|H|S|G|T|P){3}|(A|B|C|D|E|F|O|I|Z|H|S|G|T|P){6})(\s|\0)/gi;
@@ -56,7 +69,6 @@
 					let printArea = document.getElementById('outputArea');
 					console.log("Print area found!");
 					let previousIndex = 0;
-					let counter = 0;
 					//progress.style = "height: 5px;";
 
 					/* 	To prevent an infinite loop, there is a check to see if the
@@ -87,13 +99,9 @@
 						/* Assign to previousIndex the value of lastIndex or
 						   previousIndex, whichever is greater.*/
 						previousIndex = cheekyPattern.lastIndex || previousIndex;
-						++counter;
-							let percentage = (100 * (previousIndex / contents.length) ) + "%;";
-							console.log(percentage+" complete!");
-							progress.style = "width: "+percentage;
-						//}
 					}
-					//console.log("Loop finished late!");
+					warning.style="display: none";
+					success.style="display: inline-block";
 				}
 			}
 
