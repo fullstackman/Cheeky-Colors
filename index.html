@@ -1,15 +1,21 @@
 <!Doctype HTML>
-<html>
+<html lang="en">
 	<head>
 		<meta name="author" content="Brandon Diaz-Abreu">
-		<meta name="description" content="A list of HEX colors with a little personality.">
+		<meta name="description" content="A tool for visual designers and web developers. Draw inspiration from these HEX colors that have some personality.">
 		<meta name="keywords" content="Fun HEX color names">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="theme-color" content="#408CFF">
 		<meta name="google-site-verification" content="NY1ANoMTcO7X90-hoJus7x5cnj0oAOZjMVvRGcz10t4" />
 		<title>Cheeky Colors</title>
-		<!-- Find a font with an open 4: http://www.proteacher.net/discussions/showthread.php?t=204159-->
 		<style type="text/css">
+			@font-face {
+			    font-family: 'Mouse Memoirs';
+			    src: url('fonts/Mouse_Memoirs/mousememoirs-regular-webfont.woff2') format('woff2'),
+			         url('fonts/Mouse_Memoirs/mousememoirs-regular-webfont.woff') format('woff');
+			    font-weight: normal;
+			    font-style: normal;
+			}
 			body{
 				background: #408CFF; /* For browsers that do not support gradients */    
 				background: -webkit-linear-gradient(135deg, #408CFF, #DA4BFF);
@@ -65,7 +71,7 @@
 				display: none;
 			}
 			.color_title:hover .hexcode{
-				font-family: Verdana;
+				font-family: 'Mouse Memoirs', sans-serif;
 				display: block;
 			}
 			@media only screen and (min-width: 800px){
