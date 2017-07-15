@@ -28,7 +28,8 @@
 				font-size: 18px;
 			}
 			#main_area{
-				margin: 1vh 2vw 0 2vw;
+				margin: 1vh 2vw 1vh 2vw;
+				min-height: 100vh;
 			}
 			.color_block{
 				min-width: 100px;
@@ -74,6 +75,14 @@
 				font-family: 'Mouse Memoirs', sans-serif;
 				display: block;
 			}
+			.button_container{
+				margin: 4vh 0;
+			}
+			footer{
+				width: 100%;
+				background-color: #FFFFFF;
+				padding: 0.5vh 0;
+			}
 			@media only screen and (min-width: 800px){
 				body{
 					font-size: 21px;
@@ -93,10 +102,13 @@
 			<h1>Cheeky Colors</h1>
 			<h2>What if your background color was a <span style="color: #BADA55">#BADA55</span>?</h2>
 			<p style="display:none;">A tool for visual designers and web developers. Draw inspiration from these HEX colors that have some personality.</p>
-			<div>Coming soon. . .</div>
+			<div>Details coming soon. . .</div>
 			<p id="mobile_instructions">Tap on the name of a color to view its HEX code.</p>
-			<button id="loader">Load More</button>
 			<div id="display_area"></div>
+			<div class="button_container">
+				<button id="loader">Load More</button>
+				<button id="redirect">View All</button>
+			</div>
 			<noscript>
 				<div class="color_block">
 					<div class="color_display" style="background-color: #BADA55;">
@@ -142,22 +154,61 @@
 					Object.seal(referenceSet);
 				}
 				else{
-					console.log("The reference set is not fixed size!")
+					console.log("The reference set is not fixed size!");
 				}
+
+				function colorize(name){
+					;
+				}
+
+				function renderColor(givenColor){
+					let container = document.createElement("div");
+					container.classList.add("color_block");
+					let colorArea = document.createElement("div");
+					colorArea.classList.add("color_display");
+					//create a "colorize" function
+					colorArea.style.backgroundColor = "#FAE632";
+					let textArea = document.createElement("div");
+					textArea.classList.add("color_title");
+					let plainTitle = document.createElement("p");
+					plainTitle.classList.add("plaintext");
+					plainTitle.appendChild(document.createTextNode(givenColor.toUpperCase() ) );
+					let hexTitle = document.createElement("p");
+					hexTitle.classList.add("hexcode");
+					//assign the colorized name
+					hexTitle.appendChild(document.createTextNode("Not ready.") );
+					let linkPart = document.createElement("a");
+					linkPart.classList.add("def_link");
+					let theURL = "https://en.wiktionary.org/wiki/"+givenColor;
+					linkPart.setAttribute("href", theURL);
+					linkPart.setAttribute("target", "_blank");
+					linkPart.appendChild(document.createTextNode("Definition") );
+					textArea.appendChild(plainTitle);
+					textArea.appendChild(hexTitle);
+					container.appendChild(colorArea);
+					container.appendChild(textArea);
+					container.appendChild(linkPart);
+					return container;
+				}
+
 				function loadRandom(){
 					//alert("The dictionary contains this many words: "+cheekyDictionary.length+"\nThe reference set contains this many spaces: "+referenceSet.length);
+					let targetArea = document.getElementById("display_area");
 					let count = 0;
 					while(count < 20){
 						let currentIndex = Math.floor(Math.random() * cheekyDictionary.length);
 						while(referenceSet[currentIndex]){
 							currentIndex = Math.floor(Math.random() * cheekyDictionary.length);
 						}
-						console.log("We randomly picked this color: "+cheekyDictionary[currentIndex]);
+						//console.log("We randomly picked this color: "+cheekyDictionary[currentIndex]);
+						targetArea.appendChild(renderColor(cheekyDictionary[currentIndex]));
+						referenceSet[currentIndex] = true;
 						++count;
 					}
 				}
 				document.getElementById("loader").addEventListener("click", loadRandom);
 			</script>
 		</div>
+		<footer>Designed with ❤︎ in New Jersey</footer>
 	</body>
 </html>
