@@ -81,16 +81,23 @@
 				.color_display{
 					height: 65%;
 				}
+				#mobile_instructions{
+					display: none;
+				}
 			}
 		</style>
+		<script type="text/javascript" src="dictionary/dictionary.js"></script>
 	</head>
 	<body>
 		<div id="main_area">
 			<h1>Cheeky Colors</h1>
 			<h2>What if your background color was a <span style="color: #BADA55">#BADA55</span>?</h2>
-			<!-- 
+			<p style="display:none;">A tool for visual designers and web developers. Draw inspiration from these HEX colors that have some personality.</p>
 			<div>Coming soon. . .</div>
-			<noscript> -->
+			<p id="mobile_instructions">Tap on the name of a color to view its HEX code.</p>
+			<button id="loader">Load More</button>
+			<div id="display_area"></div>
+			<noscript>
 				<div class="color_block">
 					<div class="color_display" style="background-color: #BADA55;">
 					</div>
@@ -127,8 +134,30 @@
 					</div>
 					<a class="def_link" href="https://en.wiktionary.org/wiki/bae" target="_blank">Definition</a>
 				</div>
-				<!-- <div>Please enable JavaScript to view more!</div>
-			</noscript> -->
+				<div>Please enable JavaScript to view more!</div>
+			</noscript>
+			<script type="text/javascript">
+				var referenceSet = new Array(cheekyDictionary.length);
+				if(Object.seal){
+					Object.seal(referenceSet);
+				}
+				else{
+					console.log("The reference set is not fixed size!")
+				}
+				function loadRandom(){
+					//alert("The dictionary contains this many words: "+cheekyDictionary.length+"\nThe reference set contains this many spaces: "+referenceSet.length);
+					let count = 0;
+					while(count < 20){
+						let currentIndex = Math.floor(Math.random() * cheekyDictionary.length);
+						while(referenceSet[currentIndex]){
+							currentIndex = Math.floor(Math.random() * cheekyDictionary.length);
+						}
+						console.log("We randomly picked this color: "+cheekyDictionary[currentIndex]);
+						++count;
+					}
+				}
+				document.getElementById("loader").addEventListener("click", loadRandom);
+			</script>
 		</div>
 	</body>
 </html>
