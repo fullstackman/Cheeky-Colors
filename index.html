@@ -149,6 +149,16 @@
 				<div>Please enable JavaScript to view more!</div>
 			</noscript>
 			<script type="text/javascript">
+				var hexMapping = {
+					O:0,
+					I:1,
+					Z:2,
+					H:4,
+					S:5,
+					G:6,
+					T:7,
+					P:9
+				};
 				var referenceSet = new Array(cheekyDictionary.length);
 				if(Object.seal){
 					Object.seal(referenceSet);
@@ -158,25 +168,43 @@
 				}
 
 				function colorize(name){
-					;
+					let hexVersion = "#";
+					let index = 0;
+					while(index < name.length){
+						/* because the keys of the hexMapping object are single letters,
+						 we can access the values using this simple syntax!
+						 */
+						let hexValue = hexMapping[name[index] ];
+						/* Can't use the default operator because "O" maps to 0.
+						 So if we fail to access an appropriate value in the mapping,
+						 we just use the letter that was given by the name*/
+						if(hexValue == undefined || hexValue == null ){
+							hexValue = name[index];
+						}
+						hexVersion += hexValue;
+						++index;
+					}
+					return hexVersion;
 				}
 
 				function renderColor(givenColor){
+					//is there a clean way to create this once globally and 
+					//edit the relevant parts upon function call?
+					let namedColor = givenColor.toUpperCase();
+					let hexColor = colorize(namedColor);
 					let container = document.createElement("div");
 					container.classList.add("color_block");
 					let colorArea = document.createElement("div");
 					colorArea.classList.add("color_display");
-					//create a "colorize" function
-					colorArea.style.backgroundColor = "#FAE632";
+					colorArea.style.backgroundColor = hexColor;
 					let textArea = document.createElement("div");
 					textArea.classList.add("color_title");
 					let plainTitle = document.createElement("p");
 					plainTitle.classList.add("plaintext");
-					plainTitle.appendChild(document.createTextNode(givenColor.toUpperCase() ) );
+					plainTitle.appendChild(document.createTextNode(namedColor) );
 					let hexTitle = document.createElement("p");
 					hexTitle.classList.add("hexcode");
-					//assign the colorized name
-					hexTitle.appendChild(document.createTextNode("Not ready.") );
+					hexTitle.appendChild(document.createTextNode(hexColor) );
 					let linkPart = document.createElement("a");
 					linkPart.classList.add("def_link");
 					let theURL = "https://en.wiktionary.org/wiki/"+givenColor;
@@ -207,6 +235,7 @@
 					}
 				}
 				document.getElementById("loader").addEventListener("click", loadRandom);
+				loadRandom();
 			</script>
 		</div>
 		<footer>Designed with ❤︎ in New Jersey</footer>
