@@ -27,9 +27,33 @@
 				text-align: center;
 				font-size: 18px;
 			}
+			button{
+				padding: 1vh 1vh;
+				background-color: transparent;
+				border: 2px solid #000000;
+				border-radius: 0.5em;
+				font-size: 1.1em;
+			}
+			button:hover{
+				background-color: white;
+				color: #000000;
+				cursor: pointer;
+			}
+			button a{
+				text-decoration: none;
+				color: initial;
+			}
 			#main_area{
 				margin: 1vh 2vw 1vh 2vw;
 				min-height: 100vh;
+			}
+			.legible_background{
+				background-color: #FFFFFF;
+				border-radius: 1em;
+				padding: 0 0 1vh 0;
+			}
+			#fork_banner{
+				display: none;
 			}
 			.color_block{
 				min-width: 100px;
@@ -87,27 +111,38 @@
 				body{
 					font-size: 21px;
 				}
-				.color_display{
-					height: 65%;
-				}
 				#mobile_instructions{
 					display: none;
 				}
+				#fork_banner{
+					display: inline;
+					position: absolute;
+					top: 0;
+					right: 0;
+					border: 0;
+				}
+				.color_display{
+					height: 65%;
+				}
 			}
 		</style>
+		<!-- Hardcode a smaller dictionary of 100 - 400 fun color names -->
 		<script type="text/javascript" src="dictionary/dictionary.js"></script>
 	</head>
 	<body>
 		<div id="main_area">
-			<h1>Cheeky Colors</h1>
-			<h2>What if your background color was a <span style="color: #BADA55">#BADA55</span>?</h2>
-			<p style="display:none;">A tool for visual designers and web developers. Draw inspiration from these HEX colors that have some personality.</p>
-			<div>Details coming soon. . .</div>
-			<p id="mobile_instructions">Tap on the name of a color to view its HEX code.</p>
+			<div class="legible_background">
+				<h1>Cheeky Colors</h1>
+				<h4>What if your background color was a <span style="color: #BADA55">#BADA55</span>?</h4>
+				<p style="display:none;">A tool for visual designers and web developers. Draw inspiration from these HEX colors that have some personality.</p>
+				<div>Hover over a color name to view its hex code.</div>
+				<p id="mobile_instructions">Tap on the name of a color to view its HEX code.</p>
+			</div>
+			<a href="https://github.com/brandon8000/Cheeky-Colors"><img id="fork_banner" src="images/fork_me.png" alt="Fork this project on GitHub"></a>
 			<div id="display_area"></div>
 			<div class="button_container">
 				<button id="loader">Load More</button>
-				<button id="redirect">View All</button>
+				<button id="redirect"><a href="#">View All</a></button>
 			</div>
 			<noscript>
 				<div class="color_block">
