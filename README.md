@@ -6,6 +6,7 @@ Using [LeetSpeak](https://en.wikipedia.org/wiki/Leet), there are many fun words 
 
  ## What's Next
   * Incorporate search sidebar
+  * Use search to pick a meaningful background color
   * Allow for filter by number of characters and/or first letter
   * Google Analytics
   * Design a logo
