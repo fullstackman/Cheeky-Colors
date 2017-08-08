@@ -50,9 +50,15 @@
 			.legible_background{
 				background-color: #FFFFFF;
 				border-radius: 1em;
-				padding: 0 0 1vh 0;
+				padding: 1px 10px;
 			}
-			#fork_banner{
+			.legible_background p{
+				text-align: initial;
+			}
+			#desktop_instructions,
+			#fork_banner,
+			.hexcode,
+			.color_title:hover .plaintext{
 				display: none;
 			}
 			.color_block{
@@ -90,12 +96,6 @@
 				/*font-size: 30px; Good for desktop*/
 				margin: 0.8vmin 0;
 			}
-			.hexcode{
-				display: none;
-			}
-			.color_title:hover .plaintext{
-				display: none;
-			}
 			.color_title:hover .hexcode{
 				font-family: 'Mouse Memoirs', sans-serif;
 				display: block;
@@ -115,6 +115,9 @@
 				#mobile_instructions{
 					display: none;
 				}
+				#desktop_instructions{
+					display: initial;
+				}
 				#fork_banner{
 					display: inline;
 					position: absolute;
@@ -128,16 +131,17 @@
 			}
 		</style>
 		<!-- Hardcode a smaller dictionary of 100 - 400 fun color names -->
-		<script type="text/javascript" src="dictionary/dictionary.js"></script>
+		<script type="text/javascript" src="dictionary/quick_dictionary.js"></script>
 	</head>
 	<body>
 		<div id="main_area">
 			<div class="legible_background">
-				<h1>Cheeky Colors</h1>
-				<h4>What if your background color was a <span style="color: #BADA55">#BADA55</span>?</h4>
 				<p style="display:none;">A tool for visual designers and web developers. Draw inspiration from these HEX colors that have some personality.</p>
-				<div>Hover over a color name to view its hex code.</div>
-				<p id="mobile_instructions">Tap on the name of a color to view its HEX code.</p>
+				<h1>Cheeky Colors</h1>
+				<p>A collection of over 14,000 words from various languages that can be spelled using the hexadecimal digits. See what colors they produce when used as a hex color code and check their definiton on Wiktionary. Visit the <a href="#">full gallery</a> to search and filter through all the words, or check out the sample below. 
+					<span id="desktop_instructions">Hover over a color name to view its hex code.</span>
+					<span id="mobile_instructions">Tap on the name of a color to view its hex code.</span>
+				</p>
 			</div>
 			<a href="https://github.com/brandon8000/Cheeky-Colors"><img id="fork_banner" src="images/fork_me.png" alt="Fork this project on GitHub"></a>
 			<div id="display_area"></div>
@@ -195,7 +199,9 @@
 					T:7,
 					P:9
 				};
-				var referenceSet = new Array(cheekyDictionary.length);
+				var referenceSet = new Array(smallDictionary.length);
+				referenceSet.fill(false);
+				/*console.log("Look at the reference set: "+referenceSet);*/
 				if(Object.seal){
 					Object.seal(referenceSet);
 				}
@@ -224,8 +230,8 @@
 				}
 
 				function renderColor(givenColor){
-					//is there a clean way to create this once globally and 
-					//edit the relevant parts upon function call?
+					/*is there a clean way to create this once globally and 
+						edit the relevant parts upon function call?*/
 					let namedColor = givenColor.toUpperCase();
 					let hexColor = colorize(namedColor);
 					let container = document.createElement("div");
@@ -256,20 +262,41 @@
 				}
 
 				function loadRandom(){
-					//alert("The dictionary contains this many words: "+cheekyDictionary.length+"\nThe reference set contains this many spaces: "+referenceSet.length);
 					let targetArea = document.getElementById("display_area");
 					let count = 0;
-					while(count < 20){
-						let currentIndex = Math.floor(Math.random() * cheekyDictionary.length);
+					while(count < 10){
+						let currentIndex = Math.floor(Math.random() * smallDictionary.length);
+						let infinityCounter = 0;
 						while(referenceSet[currentIndex]){
-							currentIndex = Math.floor(Math.random() * cheekyDictionary.length);
+							currentIndex = Math.floor(Math.random() * smallDictionary.length);
+							++infinityCounter;
+							if(infinityCounter > smallDictionary.length){
+								/*console.log("Couldn't find a new random word.");*/
+								let availableWord = smallDictionary.lastIndexOf(false);
+								/*console.log("Look at what index was available: "+availableWord);*/
+								if(availableWord > -1){
+									currentIndex = availableWord;
+								}
+								else{
+									currentIndex = -1;
+									/*Destroy the loading button*/
+									document.getElementById("loader").remove();
+								}
+								break;
+							}
 						}
-						//console.log("We randomly picked this color: "+cheekyDictionary[currentIndex]);
-						targetArea.appendChild(renderColor(cheekyDictionary[currentIndex]));
-						referenceSet[currentIndex] = true;
-						++count;
+						/*console.log("We randomly picked this color: "+smallDictionary[currentIndex]+" at index "+currentIndex);*/
+						if(currentIndex > -1){
+							targetArea.appendChild(renderColor(smallDictionary[currentIndex]));
+							referenceSet[currentIndex] = true;
+							++count;
+						}
+						else{
+							break;
+						}
 					}
 				}
+				
 				document.getElementById("loader").addEventListener("click", loadRandom);
 				loadRandom();
 			</script>
