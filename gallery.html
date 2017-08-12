@@ -1,0 +1,245 @@
+<!Doctype HTML>
+<html lang="en">
+	<head>
+		<meta name="author" content="Brandon Diaz-Abreu">
+		<meta name="description" content="A tool for visual designers and web developers. Draw inspiration from these HEX colors that have some personality.">
+		<meta name="keywords" content="Fun HEX color names">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="theme-color" content="#408CFF">
+		<title>Cheeky Colors</title>
+		<style type="text/css">
+			@font-face {
+			    font-family: 'Mouse Memoirs';
+			    src: url('fonts/Mouse_Memoirs/mousememoirs-regular-webfont.woff2') format('woff2'),
+			         url('fonts/Mouse_Memoirs/mousememoirs-regular-webfont.woff') format('woff');
+			    font-weight: normal;
+			    font-style: normal;
+			}
+			body{
+				background: #408CFF;
+				/* ^ For browsers that do not support gradients */
+				background: linear-gradient(135deg, #408CFF, #DA4BFF);
+				min-height: 100vh;
+				margin: 0;
+				text-align: center;
+				font-size: 18px;
+			}
+			button{
+				padding: 1vh 1vh;
+				background-color: transparent;
+				border: 2px solid #000000;
+				border-radius: 0.5em;
+				font-size: 1.1em;
+			}
+			button:hover{
+				background-color: white;
+				color: #000000;
+				cursor: pointer;
+			}
+			button a{
+				text-decoration: none;
+				color: initial;
+			}
+			#search_area{
+				background: #FFFFFF;
+				width: 25%;
+				position: fixed;
+				top: 0;
+				min-height: 100vh;
+				z-index: 5;
+			}
+			input{
+				max-width: 70%;
+			}
+			#main_area{
+				width: 65%;
+				min-height: 100vh;
+				margin: 1vh 2vw 1vh 31%;
+			}
+			.legible_background{
+				background-color: #FFFFFF;
+				border-radius: 1em;
+				padding: 1px 10px;
+			}
+			.legible_background p{
+				text-align: initial;
+			}
+			#desktop_instructions,
+			#fork_banner,
+			.hexcode,
+			.color_title:hover .plaintext{
+				display: none;
+			}
+			.color_block{
+				min-width: 100px;
+				min-height: 120px;
+				width: 20%;
+				height: 20vw;
+				display: inline-block;
+				background-color: #FFFFFF;
+				border-radius: 12px;
+				margin: 25px;
+				box-shadow: 0px 0px 51px 0px rgba(0, 0, 0, 0.08),
+							0px 6px 18px 0px rgba(0, 0, 0, 0.05);
+				transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+				transform: translateY(0px);
+			}
+			.color_display{
+				height: 48%;
+				border-radius: 12px 12px 0px 0px;
+				margin: 4% 5% -4% 5%;
+			}
+			.def_link{
+				color: #000000;
+				margin: 0.6vmin 0;
+			}
+			.def_link:hover{
+				opacity: 0.7;
+				color: blue;
+			}
+			.color_title{
+				background-color: #FFFFFF;
+				text-align: center;
+			}
+			.color_title p{
+				/*font-size: 30px; Good for desktop*/
+				margin: 0.8vmin 0;
+			}
+			.color_title:hover .hexcode{
+				font-family: 'Mouse Memoirs', sans-serif;
+				display: block;
+			}
+			.button_container{
+				margin: 4vh 0;
+			}
+			footer{
+				width: 100%;
+				background-color: #FFFFFF;
+				padding: 0.5vh 0;
+			}
+			@media only screen and (min-width: 800px){
+				body{
+					font-size: 21px;
+				}
+				#mobile_instructions{
+					display: none;
+				}
+				#desktop_instructions{
+					display: initial;
+				}
+				#fork_banner{
+					display: inline;
+					position: absolute;
+					top: 0;
+					right: 0;
+					border: 0;
+				}
+				.color_display{
+					height: 65%;
+				}
+			}
+		</style>
+		<script type="text/javascript" src="dictionary/dictionary.js"></script>
+		<script type="text/javascript" src="utils.js"></script>
+	</head>
+	<body>
+		<div id="search_area">
+			<h2>Search</h2>
+			<input type="text" placeholder="badass">
+		</div>
+		<div id="main_area">
+			<div class="legible_background">
+				<h1>Cheeky Colors</h1>
+				<p>A collection of over 14,000 words from various languages that can be spelled using the hexadecimal digits. See what colors they produce when used as a hex color code and check their definiton on Wiktionary.
+					<span id="desktop_instructions">Hover over a color name to view its hex code.</span>
+					<span id="mobile_instructions">Tap on the name of a color to view its hex code.</span>
+				</p>
+			</div>
+			<a href="https://github.com/brandon8000/Cheeky-Colors"><img id="fork_banner" src="images/fork_me.png" alt="Fork this project on GitHub"></a>
+			<div id="display_area"></div>
+			<div class="button_container">
+				<button id="loader">Load More</button>
+				<button id="redirect"><a href="#">View All</a></button>
+			</div>
+			<noscript>
+				<div class="color_block">
+					<div class="color_display" style="background-color: #BADA55;">
+					</div>
+					<div class="color_title">
+						<p class="plaintext">BADASS</p>
+						<p class="hexcode">#BADA55</p>
+					</div>
+					<a class="def_link" href="https://en.wiktionary.org/wiki/badass" target="_blank">Definition</a>
+				</div>
+				<div class="color_block">
+					<div class="color_display" style="background-color: #CA7;">
+					</div>
+					<div class="color_title">
+						<p class="plaintext">CAT</p>
+						<p class="hexcode">#CA7</p>
+					</div>
+					<a class="def_link" href="https://en.wiktionary.org/wiki/cat" target="_blank">Definition</a>
+				</div>
+				<div class="color_block">
+					<div class="color_display" style="background-color: #2EA;">
+					</div>
+					<div class="color_title">
+						<p class="plaintext">SEA</p>
+						<p class="hexcode">#5EA</p>
+					</div>
+					<a class="def_link" href="https://en.wiktionary.org/wiki/sea" target="_blank">Definition</a>
+				</div>
+				<div class="color_block">
+					<div class="color_display" style="background-color: #BAE;">
+					</div>
+					<div class="color_title">
+						<p class="plaintext">BAE</p>
+						<p class="hexcode">#BAE</p>
+					</div>
+					<a class="def_link" href="https://en.wiktionary.org/wiki/bae" target="_blank">Definition</a>
+				</div>
+				<div>Please enable JavaScript to view more!</div>
+			</noscript>
+			<footer>Designed with ❤︎ in New Jersey</footer>
+			<script type="text/javascript">
+				var referenceSet = new Array(cheekyDictionary.length);
+				referenceSet.fill(false);
+				/*console.log("Look at the reference set: "+referenceSet);*/
+				if(Object.seal){
+					Object.seal(referenceSet);
+				}
+				else{
+					console.log("The reference set is not fixed size!");
+				}
+				
+				document.getElementById("loader").addEventListener("click", loadRandom);
+				loadRandom();
+
+				/*Algorithm to find similar colors
+
+				Parse the hex code and find the segment with the highest value. Match with colors that have a highest value segment within the range + or - 64 bytes of that segment value.
+				For example:
+
+				#37a10f
+				highest value segment is the middle "a1"
+				Accept all colors that have a middle segment value of "71" to "d1"
+
+				Note that the 3-character names expand to be 6 characters by inserting a copy of each character right after itself. So, #5EA expands to #55EEAA.
+
+				Some code:
+				document.getElementById('main_button').addEventListener("click",convertToHex);
+				let sourceText = document.getElementById('main_input');
+				function convertToHex(e){
+					/*
+					var hex = '';
+					for(var i=0;i<str.length;i++) {
+						hex += ''+str.charCodeAt(i).toString(16);
+					}
+					*\/
+					alert("That converts to this!");
+				}
+				*/
+			</script>
+		</div>
+	</body>
+</html>
