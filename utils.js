@@ -1,3 +1,29 @@
+/*Set up the dummy element that all other elements will be based off*/
+var container = document.createElement("div");
+container.classList.add("color_block");
+let colorArea = document.createElement("div");
+colorArea.classList.add("color_display");
+colorArea.style.backgroundColor = "#FAFA21";
+let textArea = document.createElement("div");
+textArea.classList.add("color_title");
+let plainTitle = document.createElement("p");
+plainTitle.classList.add("plaintext");
+plainTitle.appendChild(document.createTextNode("[word]") );
+let hexTitle = document.createElement("p");
+hexTitle.classList.add("hexcode");
+hexTitle.appendChild(document.createTextNode("#[word]") );
+let linkPart = document.createElement("a");
+linkPart.classList.add("def_link");
+var theURL = "https://en.wiktionary.org/wiki/";
+linkPart.setAttribute("href", theURL);
+linkPart.setAttribute("target", "_blank");
+linkPart.appendChild(document.createTextNode("Definition") );
+textArea.appendChild(plainTitle);
+textArea.appendChild(hexTitle);
+container.appendChild(colorArea);
+container.appendChild(textArea);
+container.appendChild(linkPart);
+
 function colorize(name){
 	let hexVersion = "#";
 	let index = 0;
@@ -19,35 +45,14 @@ function colorize(name){
 }
 
 function renderColor(givenColor){
-	/*is there a clean way to create this once globally and 
-		edit the relevant parts upon function call?*/
 	let namedColor = givenColor.toUpperCase();
 	let hexColor = colorize(namedColor);
-	let container = document.createElement("div");
-	container.classList.add("color_block");
-	let colorArea = document.createElement("div");
-	colorArea.classList.add("color_display");
-	colorArea.style.backgroundColor = hexColor;
-	let textArea = document.createElement("div");
-	textArea.classList.add("color_title");
-	let plainTitle = document.createElement("p");
-	plainTitle.classList.add("plaintext");
-	plainTitle.appendChild(document.createTextNode(namedColor) );
-	let hexTitle = document.createElement("p");
-	hexTitle.classList.add("hexcode");
-	hexTitle.appendChild(document.createTextNode(hexColor) );
-	let linkPart = document.createElement("a");
-	linkPart.classList.add("def_link");
-	let theURL = "https://en.wiktionary.org/wiki/"+givenColor;
-	linkPart.setAttribute("href", theURL);
-	linkPart.setAttribute("target", "_blank");
-	linkPart.appendChild(document.createTextNode("Definition") );
-	textArea.appendChild(plainTitle);
-	textArea.appendChild(hexTitle);
-	container.appendChild(colorArea);
-	container.appendChild(textArea);
-	container.appendChild(linkPart);
-	return container;
+	let newInstance = container.cloneNode(true);
+	newInstance.children[0].style.background = hexColor;
+	newInstance.children[1].children[0].textContent = namedColor;
+		newInstance.children[1].children[1].textContent = hexColor;
+	newInstance.children[2].href += givenColor;
+	return newInstance;
 }
 
 function loadRandom(){
