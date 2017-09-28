@@ -43,15 +43,26 @@
 				text-decoration: none;
 				color: initial;
 			}
-			#search_area{
-				background: #FFFFFF;
-				width: 25%;
+			#search_area, #search_toggle{
 				position: fixed;
 				top: 0;
 				min-height: 100vh;
 				z-index: 5;
+				transition: 0.3s ease;
+			}
+			#search_area{
+				background: #FFFFFF;
+				width: 25%;
 				text-align: initial;
 				padding: 1px 1%;
+			}
+			#search_toggle{
+				background: #EAEAEA;
+				left: 27%;
+			}
+			#search_toggle #trigger{
+				margin-top: 46vh;
+				transition: 0.3s ease;
 			}
 			input{
 				max-width: 70%;
@@ -153,9 +164,15 @@
 					right: 0;
 					border: 0;
 				}
+				#search_toggle{
+					background: #EAEAEA;
+					left: 17%;
+				}
 				.color_display{
 					height: 65%;
-					margin: 25px;
+				}
+				.color_block{
+					margin: 20px;
 				}
 				.color_title p{
 					font-size: 25px;
@@ -186,7 +203,11 @@
 				<button>6 Letters</button>
 			</div>
 		</div>
-		<div id="search_toggle">X</div>
+		<div id="search_toggle">
+			<div id="trigger" onclick="toggleSidebar()">
+				<span>></span>
+			</div>
+		</div>
 		<div id="main_area">
 			<div class="legible_background">
 				<h1>Cheeky Colors</h1>
@@ -279,6 +300,19 @@
 					alert("That converts to this!");
 				}
 				*/
+				let triggerPosition = 0;
+				let sidebarActive = true;
+				let triggerIcon = document.querySelector("#trigger");
+				let sidebar = document.querySelector("#search_area");
+				function toggleSidebar(){
+					triggerIcon.style=`transform: rotate(${triggerPosition+=180}deg)`;
+					if(sidebarActive){
+						sidebar.style += "width: 0%; opacity:0";
+					}
+					else{
+						sidebar.style += "width: initial; opacity:1";
+					}
+				}
 			</script>
 		</div>
 	</body>
