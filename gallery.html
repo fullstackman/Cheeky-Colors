@@ -22,7 +22,10 @@
 				min-height: 100vh;
 				margin: 0;
 				text-align: center;
-				font-size: 18px;
+				font-size: 15px;
+			}
+			h2, h3{
+				margin: 0;
 			}
 			button{
 				padding: 1vh 1vh;
@@ -47,6 +50,8 @@
 				top: 0;
 				min-height: 100vh;
 				z-index: 5;
+				text-align: initial;
+				padding: 1px 1%;
 			}
 			input{
 				max-width: 70%;
@@ -78,7 +83,7 @@
 				display: inline-block;
 				background-color: #FFFFFF;
 				border-radius: 12px;
-				margin: 25px;
+				margin: 12px;
 				box-shadow: 0px 0px 51px 0px rgba(0, 0, 0, 0.08),
 							0px 6px 18px 0px rgba(0, 0, 0, 0.05);
 				transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -102,12 +107,12 @@
 				text-align: center;
 			}
 			.color_title p{
-				/*font-size: 30px; Good for desktop*/
 				margin: 0.8vmin 0;
 			}
 			.color_title:hover .hexcode{
 				font-family: 'Mouse Memoirs', sans-serif;
 				display: block;
+				font-size: 1.3em;
 			}
 			.button_container{
 				margin: 4vh 0;
@@ -120,6 +125,20 @@
 			@media only screen and (min-width: 800px){
 				body{
 					font-size: 21px;
+				}
+				h2, h3{
+					margin: 1vh 0;
+				}
+				#search_area{
+					width: 15%;
+					padding: 1px 1%;
+				}
+				input{
+					max-width: 90%;
+				}
+				#main_area{
+					width: 75%;
+					margin: 1vh 2vw 1vh 19%;
 				}
 				#mobile_instructions{
 					display: none;
@@ -136,6 +155,13 @@
 				}
 				.color_display{
 					height: 65%;
+					margin: 25px;
+				}
+				.color_title p{
+					font-size: 25px;
+				}
+				.color_title:hover .hexcode{
+					font-size: 25px;
 				}
 			}
 		</style>
@@ -144,9 +170,23 @@
 	</head>
 	<body>
 		<div id="search_area">
-			<h2>Search</h2>
+			<h2><u>Filters</u></h2>
+			<h3>Search By Name</h3>
 			<input type="text" placeholder="badass">
+			<h3>Search By Color</h3>
+			<input type="color">
+			<div id="buttonRow">
+				<button>Green</button>
+				<button>Red</button>
+				<button>Blue</button>
+			</div>
+			<h3>Search By Length</h3>
+			<div id="buttonRow">
+				<button>3 Letters</button>
+				<button>6 Letters</button>
+			</div>
 		</div>
+		<div id="search_toggle">X</div>
 		<div id="main_area">
 			<div class="legible_background">
 				<h1>Cheeky Colors</h1>
