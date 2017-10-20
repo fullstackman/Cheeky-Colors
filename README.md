@@ -7,7 +7,7 @@ Using [LeetSpeak](https://en.wikipedia.org/wiki/Leet), there are many fun words 
  ## What's Next
   * Incorporate search sidebar
   * Use search to pick a meaningful background color
-  * Allow for filter by number of characters and/or first letter
+  * Allow for filter by number of characters and/or first letter (It might be helpful to display limited results on a [slow internet connection](https://stackoverflow.com/questions/6994061/how-to-detect-slow-internet-connections).)
   * Google Analytics
   * Design a logo
   * Add [progressive web app](https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/) capability
